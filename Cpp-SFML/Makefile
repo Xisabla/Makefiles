@@ -7,11 +7,11 @@
 #                                               #
 #-----------------------------------------------#
 
-# Main file's name (and thus output file name)
+# Main file's name (and thus the executable filename)
 TARGET?=main
 
-# Libraries needed (will be compiled)
-LIBS?=
+# All libraries files (.h, .cpp, .hpp)
+LIBS?=libs/test.h libs/test.cpp
 
 #-----------------------------------------------#
 #                                               #
@@ -23,7 +23,7 @@ LIBS?=
 CC=g++
 
 # Compilation flags
-CFLAGS?=-c -lm -Wall
+CFLAGS?=-c
 
 #-----------------------------------------------#
 #                                               #
@@ -40,12 +40,9 @@ help: ## Show this help.
 $(TARGET): $(TARGET.cpp) ## Auto build target
 	$(MAKE) build
 
-$(LIBS): %.o: %.cpp %.h ## Auto build libs
-	$(CC) -c $< -o $@
-
 build: $(TARGET).cpp $(LIBS) # Build target
-	$(CC) $(TARGET).cpp -o $(TARGET).o $(LIBS) $(CFLAGS)
-	$(CC) $(TARGET).o -o $(TARGET) -lsfml-graphics -lsfml-window -lsfml-system
+	$(CC) $(CFLAGS) $(LIBS) $(TARGET).cpp
+	$(CC) $(TARGET).o $(LIBS) -o $(TARGET) -lsfml-graphics -lsfml-window -lsfml-system
 
 run: $(TARGET) ## Run target (build if needed)
 	./$(TARGET)
@@ -56,4 +53,5 @@ clean: ## Clean directory from compiled files
 	find ./ -type f ! -name "*.*" ! -path "./Makefile" -delete
 	find ./ -type f -name "*out*" -delete
 	find ./ -type f -name "*.o" -delete
+	find ./ -type f -name "*.gch" -delete
 	find ./ -type f -name ".fuse*" -delete
