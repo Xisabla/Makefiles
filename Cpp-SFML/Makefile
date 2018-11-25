@@ -7,7 +7,7 @@
 #                                               #
 #-----------------------------------------------#
 
-# Main file's name (and thus the executable filename)
+# Main file's name (thus, will be the executable file name)
 TARGET?=main
 
 # All libraries files (.h, .cpp, .hpp)
@@ -23,7 +23,7 @@ LIBS?=libs/test.h libs/test.cpp
 CC=g++
 
 # Compilation flags
-CFLAGS?=-c
+CFLAGS?=-c -lm -Wall
 
 #-----------------------------------------------#
 #                                               #
