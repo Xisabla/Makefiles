@@ -40,7 +40,7 @@ help: ## Show this help.
 $(TARGET): $(TARGET.cpp) ## Auto build target
 	$(MAKE) build
 
-build: $(TARGET).cpp $(LIBS) # Build target
+build: $(TARGET).cpp $(LIBS) ## Build target
 	$(CC) $(CFLAGS) $(LIBS) $(TARGET).cpp
 	$(CC) $(TARGET).o $(LIBS) -o $(TARGET) -lsfml-graphics -lsfml-window -lsfml-system
 
