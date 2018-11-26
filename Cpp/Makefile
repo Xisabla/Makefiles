@@ -43,7 +43,7 @@ $(TARGET): $(TARGET.cpp) ## Auto build target
 $(LIBS): %.o: %.cpp %.h ## Auto build libs
 	$(CC) -c $< -o $@
 
-build: $(TARGET).cpp $(LIBS) # Build target
+build: $(TARGET).cpp $(LIBS) ## Build target
 	$(CC) $(TARGET).cpp -o $(TARGET) $(LIBS) $(CFLAGS)
 
 run: $(TARGET) ## Run target (build if needed)
